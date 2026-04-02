@@ -25,65 +25,42 @@ activity using a SIEM platform.
 
 ---
 
-## Lab Setup
-
-### VMware Workstation – Lab Environment
-![VMware Lab](screenshots/1.%20vmware_lab.png)
-*VMware Workstation Pro 17 showing both Kali Linux and Windows Server 2022 virtual machines running simultaneously.*
-
----
-
-### Kali Linux – Attacker Machine
-![Kali Linux](screenshots/2.%20kali_machine.png)
-*Kali Linux 2025.2 configured as the attacker machine used to simulate cyber attacks against the target system.*
+## Lab Flow
+```
+Kali Linux → Attack Simulation → Windows Server 2022 → Splunk SIEM → Log Investigation
+```
 
 ---
 
-### Windows Server 2022 – Target Machine
-![Windows Server](screenshots/3.%20windows_server.png)
-*Windows Server 2022 configured as the target machine that generates Windows Security Event logs.*
-
----
+## Screenshots
 
 ### Network Connectivity Test
 ![Ping Test](screenshots/4.%20ping_test.png)
-*Successful ping from Kali Linux to Windows Server 2022 confirming network connectivity between both machines.*
+*Successful ping from Kali Linux to Windows Server 2022 confirming lab network is working.*
 
 ---
 
 ### Splunk SIEM Dashboard
 ![Splunk Dashboard](screenshots/5.%20splunk_dashboard.png)
-*Splunk Enterprise 10.0.1 dashboard running on Windows Server 2022 used for real-time log monitoring.*
-
----
-
-### Windows Log Collection – Success
-![Log Collection](screenshots/6.%20splunk_log_collection.png)
-*Splunk confirming successful creation of Windows local event log data input.*
-
----
-
-### Splunk Logs Verified
-![Logs Verified](screenshots/7.%20splunk_logs_verified.png)
-*Splunk search results confirming Windows Security and Application logs are being collected in real time.*
+*Splunk Enterprise dashboard configured to collect and monitor Windows Security logs in real time.*
 
 ---
 
 ### Attack Simulation – Nmap Network Scan
 ![Nmap Attack](screenshots/8.%20attack_nmap_scan.png)
-*Nmap service version scan from Kali Linux identifying open ports on Windows Server 2022 – MITRE ATT&CK T1046.*
+*Nmap scan from Kali Linux identifying open ports on Windows Server 2022 – MITRE ATT&CK T1046.*
 
 ---
 
 ### Attack Simulation – Hydra Brute Force
 ![Brute Force](screenshots/9.%20attack_brute_force.png)
-*Hydra brute force attack from Kali Linux targeting SMB port 445 generating failed login events – MITRE ATT&CK T1110.*
+*Hydra brute force attack targeting SMB port 445 generating failed login events – MITRE ATT&CK T1110.*
 
 ---
 
 ### Investigation Results – Attack Detected in Splunk
 ![Investigation](screenshots/10.%20investigation_results.png)
-*Splunk search showing 15 EventCode=4625 Failed Logon events detected from the Hydra brute force attack.*
+*Splunk detecting 15 EventCode=4625 Failed Logon events from the Hydra brute force attack.*
 
 ---
 
@@ -115,17 +92,6 @@ index=main EventCode=4688
 | 4625 | Failed Logon | Failed login – brute force indicator |
 | 4688 | Process Creation | New process created |
 | 4672 | Special Privileges | Privilege escalation indicator |
-
----
-
-## Skills Demonstrated
-
-- Building and configuring a virtualized SOC lab using VMware
-- Installing and configuring Splunk SIEM for Windows log collection
-- Simulating cyber attacks using Kali Linux tools (Nmap, Hydra)
-- Detecting attacks using Splunk search queries and Windows Event IDs
-- Mapping attack techniques to the MITRE ATT&CK framework
-- Documenting findings in a professional SOC investigation report
 
 ---
 
