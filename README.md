@@ -1,10 +1,8 @@
-# SOC Home Lab
-## SIEM Monitoring & Attack Detection
+# SOC Home Lab – SIEM Monitoring & Attack Detection
 
 ![VMware](https://img.shields.io/badge/Platform-VMware-blue)
 ![Splunk](https://img.shields.io/badge/SIEM-Splunk-orange)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
-![Difficulty](https://img.shields.io/badge/Level-Intermediate-yellow)
 
 ---
 
@@ -13,11 +11,6 @@
 This project demonstrates the creation of a Security Operations Center (SOC) 
 home lab environment to simulate real-world cyber attacks and detect malicious 
 activity using a SIEM platform.
-
-The lab consists of an attacker machine running Kali Linux and a target machine 
-running Windows Server 2022, both connected through a virtualized network inside 
-VMware Workstation Pro 17. Splunk Enterprise was configured to collect and analyze 
-Windows security logs in real time.
 
 ---
 
@@ -32,33 +25,89 @@ Windows security logs in real time.
 
 ---
 
-## Lab Flow
-```
-Kali Linux → Attack Simulation → Windows Server 2022 → Splunk SIEM → Log Investigation
-```
+## Lab Setup
+
+### VMware Workstation – Lab Environment
+![VMware Lab](screenshots/1_vmware_lab.png)
+*VMware Workstation Pro 17 showing both Kali Linux and Windows Server 2022 virtual machines running simultaneously.*
+
+---
+
+### Kali Linux – Attacker Machine
+![Kali Linux](screenshots/2_kali_machine.png)
+*Kali Linux 2025.2 configured as the attacker machine used to simulate cyber attacks against the target system.*
+
+---
+
+### Windows Server 2022 – Target Machine
+![Windows Server](screenshots/3_windows_server.png)
+*Windows Server 2022 configured as the target machine that generates Windows Security Event logs.*
+
+---
+
+### Network Connectivity Test
+![Ping Test](screenshots/4_ping_test.png)
+*Successful ping from Kali Linux to Windows Server 2022 (192.168.52.136) confirming network connectivity between both machines.*
+
+---
+
+### Splunk SIEM Dashboard
+![Splunk Dashboard](screenshots/5_splunk_dashboard.png)
+*Splunk Enterprise 10.0.1 dashboard running on Windows Server 2022 at http://localhost:8000 used for real-time log monitoring.*
+
+---
+
+### Windows Log Collection – Success
+![Log Collection](screenshots/6_splunk_log_collection.png)
+*Splunk confirming successful creation of Windows local event log data input including Security, System and Application logs.*
+
+---
+
+### Splunk Logs Verified
+![Logs Verified](screenshots/7_splunk_logs_verified.png)
+*Splunk search results confirming Windows Security and Application logs are being collected and indexed in real time.*
+
+---
+
+### Attack Simulation – Nmap Network Scan
+![Nmap Attack](screenshots/8_attack_nmap_scan.png)
+*Nmap service version scan from Kali Linux identifying open ports 5357 and 5985 on Windows Server 2022 – MITRE ATT&CK T1046.*
+
+---
+
+### Attack Simulation – Hydra Brute Force
+![Brute Force](screenshots/9_attack_brute_force.png)
+*Hydra brute force attack from Kali Linux targeting SMB port 445 on Windows Server 2022 generating failed login events – MITRE ATT&CK T1110.*
+
+---
+
+### Investigation Results – Attack Detected in Splunk
+![Investigation](screenshots/10_investigation_results.png)
+*Splunk search showing 15 EventCode=4625 (Failed Logon) events detected from the Hydra brute force attack confirming successful SIEM detection.*
 
 ---
 
 ## Attacks Simulated
 
-| Attack | Tool | Command | MITRE ATT&CK |
-|--------|------|---------|--------------|
-| Network Scanning | Nmap | nmap -sV 192.168.52.136 | T1046 |
-| Brute Force Login | Hydra | hydra -l administrator -P rockyou.txt 192.168.52.136 smb | T1110 |
+| Attack | Tool | MITRE ATT&CK |
+|--------|------|--------------|
+| Network Scanning | Nmap | T1046 |
+| Brute Force Login | Hydra | T1110 |
+| SMB Service Attack | Hydra | T1021.002 |
 
 ---
 
-## Detection Results
-
-| Finding | Evidence | MITRE ATT&CK |
-|---------|----------|--------------|
-| Network Reconnaissance | Open ports 5357 and 5985 identified | T1046 |
-| Brute Force Attack | 15 EventCode=4625 failed login events in Splunk | T1110 |
-| SMB Service Targeted | Hydra attack on SMB port 445 | T1021.002 |
+## Splunk Queries Used
+```
+index=main
+index=main EventCode=4624
+index=main EventCode=4625
+index=main EventCode=4688
+```
 
 ---
 
-## Windows Event IDs Used
+## Windows Event IDs
 
 | Event ID | Name | Description |
 |----------|------|-------------|
@@ -93,24 +142,9 @@ Kali Linux → Attack Simulation → Windows Server 2022 → Splunk SIEM → Log
 
 ---
 
-## Splunk Queries Used
-```
-index=main
-index=main EventCode=4625
-index=main EventCode=4624
-```
-
----
-
-## Project Report
-
-Full investigation report with screenshots is available in this repository.
-
----
-
 ## Author
 
-**Muhammed Anshad**
-Certified SOC Analyst (CSA) – EC-Council
-[LinkedIn](https://www.linkedin.com/in/muhemmed-a501a0)
+**Muhammed Anshad**  
+Certified SOC Analyst (CSA) – EC-Council  
+[LinkedIn](https://www.linkedin.com/in/muhemmed-a501a0)  
 [GitHub](https://github.com/anshadshanu)
