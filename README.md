@@ -28,62 +28,62 @@ activity using a SIEM platform.
 ## Lab Setup
 
 ### VMware Workstation – Lab Environment
-![VMware Lab](screenshots/1_vmware_lab.png)
+![VMware Lab](screenshots/1.%20vmware_lab.png)
 *VMware Workstation Pro 17 showing both Kali Linux and Windows Server 2022 virtual machines running simultaneously.*
 
 ---
 
 ### Kali Linux – Attacker Machine
-![Kali Linux](screenshots/2_kali_machine.png)
+![Kali Linux](screenshots/2.%20kali_machine.png)
 *Kali Linux 2025.2 configured as the attacker machine used to simulate cyber attacks against the target system.*
 
 ---
 
 ### Windows Server 2022 – Target Machine
-![Windows Server](screenshots/3_windows_server.png)
+![Windows Server](screenshots/3.%20windows_server.png)
 *Windows Server 2022 configured as the target machine that generates Windows Security Event logs.*
 
 ---
 
 ### Network Connectivity Test
-![Ping Test](screenshots/4_ping_test.png)
-*Successful ping from Kali Linux to Windows Server 2022 (192.168.52.136) confirming network connectivity between both machines.*
+![Ping Test](screenshots/4.%20ping_test.png)
+*Successful ping from Kali Linux to Windows Server 2022 confirming network connectivity between both machines.*
 
 ---
 
 ### Splunk SIEM Dashboard
-![Splunk Dashboard](screenshots/5_splunk_dashboard.png)
-*Splunk Enterprise 10.0.1 dashboard running on Windows Server 2022 at http://localhost:8000 used for real-time log monitoring.*
+![Splunk Dashboard](screenshots/5.%20splunk_dashboard.png)
+*Splunk Enterprise 10.0.1 dashboard running on Windows Server 2022 used for real-time log monitoring.*
 
 ---
 
 ### Windows Log Collection – Success
-![Log Collection](screenshots/6_splunk_log_collection.png)
-*Splunk confirming successful creation of Windows local event log data input including Security, System and Application logs.*
+![Log Collection](screenshots/6.%20splunk_log_collection.png)
+*Splunk confirming successful creation of Windows local event log data input.*
 
 ---
 
 ### Splunk Logs Verified
-![Logs Verified](screenshots/7_splunk_logs_verified.png)
-*Splunk search results confirming Windows Security and Application logs are being collected and indexed in real time.*
+![Logs Verified](screenshots/7.%20splunk_logs_verified.png)
+*Splunk search results confirming Windows Security and Application logs are being collected in real time.*
 
 ---
 
 ### Attack Simulation – Nmap Network Scan
-![Nmap Attack](screenshots/8_attack_nmap_scan.png)
-*Nmap service version scan from Kali Linux identifying open ports 5357 and 5985 on Windows Server 2022 – MITRE ATT&CK T1046.*
+![Nmap Attack](screenshots/8.%20attack_nmap_scan.png)
+*Nmap service version scan from Kali Linux identifying open ports on Windows Server 2022 – MITRE ATT&CK T1046.*
 
 ---
 
 ### Attack Simulation – Hydra Brute Force
-![Brute Force](screenshots/9_attack_brute_force.png)
-*Hydra brute force attack from Kali Linux targeting SMB port 445 on Windows Server 2022 generating failed login events – MITRE ATT&CK T1110.*
+![Brute Force](screenshots/9.%20attack_brute_force.png)
+*Hydra brute force attack from Kali Linux targeting SMB port 445 generating failed login events – MITRE ATT&CK T1110.*
 
 ---
 
 ### Investigation Results – Attack Detected in Splunk
-![Investigation](screenshots/10_investigation_results.png)
-*Splunk search showing 15 EventCode=4625 (Failed Logon) events detected from the Hydra brute force attack confirming successful SIEM detection.*
+![Investigation](screenshots/10.%20investigation_results.png)
+*Splunk search showing 15 EventCode=4625 Failed Logon events detected from the Hydra brute force attack.*
 
 ---
 
@@ -144,7 +144,7 @@ index=main EventCode=4688
 
 ## Author
 
-**Muhammed Anshad**  
-Certified SOC Analyst (CSA) – EC-Council  
-[LinkedIn](https://www.linkedin.com/in/muhemmed-a501a0)  
+**Muhammed Anshad**
+Certified SOC Analyst (CSA) – EC-Council
+[LinkedIn](https://www.linkedin.com/in/muhemmed-a501a0)
 [GitHub](https://github.com/anshadshanu)
